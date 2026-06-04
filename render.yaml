@@ -23,11 +23,10 @@ projects:
               - key: CORS_ORIGIN
                 sync: false # User will supply Frontend URL
 
-          # Frontend Static Site
+          # Frontend Static Site (static sites are implicitly free, do not specify plan)
           - type: web
             name: plant-disease-frontend
             runtime: static
-            plan: free
             rootDir: frontend
             buildCommand: npm install && npm run build
             staticPublishPath: dist
