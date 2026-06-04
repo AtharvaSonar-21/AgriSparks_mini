@@ -7,7 +7,7 @@ projects:
     services:
     - type: web
       name: AgriSparks_mini
-      runtime: python
+      runtime: node.js
       repo: https://github.com/AtharvaSonar-21/AgriSparks_mini
       plan: free
       region: singapore
