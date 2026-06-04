@@ -1,0 +1,31 @@
+services:
+  # Backend API Web Service
+  - type: web
+    name: plant-disease-backend
+    env: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install && pip install -r requirements.txt || pip install numpy Pillow
+    startCommand: node server.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        sync: false # User will supply MongoDB Atlas URL
+      - key: CORS_ORIGIN
+        sync: false # User will supply Frontend URL (e.g. https://plant-disease-frontend.onrender.com)
+
+  # Frontend Static Site
+  - type: web
+    name: plant-disease-frontend
+    env: static
+    plan: free
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    publishDir: dist
+    envVars:
+      - key: VITE_API_URL
+        sync: false # Points to the backend URL (e.g. https://plant-disease-backend.onrender.com/api)

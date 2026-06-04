@@ -5,6 +5,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const { spawn } = require('child_process');
+const mongoose = require('mongoose');
 
 // Configure multer for temporary file storage
 const upload = multer({ 
@@ -133,6 +134,44 @@ router.post('/', upload.single('image'), async (req, res) => {
     
     console.log(`✅ Inference successful`);
     console.log(`   Top prediction: ${result.topPrediction.disease} (${result.topPrediction.confidence}%)`);
+
+    // Prepare prediction schema object
+    const predictionData = {
+      disease: result.topPrediction.disease,
+      confidence: result.topPrediction.confidence,
+      imageName: req.file.originalname,
+      imageSize: req.file.size,
+      topPredictions: result.allPredictions.map(p => ({
+        class: p.class,
+        confidence: p.confidence
+      }))
+    };
+
+    let savedPrediction = null;
+
+    // Persist to MongoDB if connection is active
+    if (mongoose.connection.readyState === 1) {
+      try {
+        const Prediction = mongoose.model('Prediction');
+        const newPrediction = new Prediction(predictionData);
+        savedPrediction = await newPrediction.save();
+        console.log('💾 Prediction saved to MongoDB successfully');
+      } catch (dbErr) {
+        console.error('⚠️ Failed to save prediction to MongoDB:', dbErr.message);
+      }
+    }
+
+    // Always unshift to the in-memory array for instant retrieval and fallback stability
+    const inMemoryItem = {
+      ...predictionData,
+      _id: savedPrediction ? savedPrediction._id.toString() : new mongoose.Types.ObjectId().toString(),
+      timestamp: savedPrediction ? savedPrediction.timestamp : new Date()
+    };
+    
+    global.predictionHistory.unshift(inMemoryItem);
+    if (global.predictionHistory.length > 50) {
+      global.predictionHistory.pop();
+    }
 
     res.json({
       success: true,

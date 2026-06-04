@@ -1,0 +1,5 @@
+numpy>=2.0.0
+Pillow>=11.0.0
+# tflite-runtime is optional and the backend will fall back to mock mode if not available.
+# If you want real model inference, uncomment the line below (may require build-essential on Linux host).
+# tflite-runtime>=2.14.0

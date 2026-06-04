@@ -24,4 +24,6 @@ const predictionSchema = new mongoose.Schema({
   }
 });
 
+predictionSchema.index({ timestamp: -1 });
+
 module.exports = mongoose.model('Prediction', predictionSchema);
