@@ -1,16 +1,34 @@
+# 🌱 AgriSparks – AI-Powered Plant Disease Classification System
 
-# 🌱 AgriSparks – Plant Disease Classification System
+An AI-powered plant disease detection platform built using **TensorFlow Lite**, **React**, **Node.js**, and **Express.js**. AgriSparks enables users to upload plant leaf images and receive instant disease predictions through a lightweight machine learning model deployed in a scalable full-stack architecture.
 
-An **AI-powered plant disease detection system** built using **TensorFlow Lite** and the **MERN stack**.
-The application classifies plant leaf images to identify possible diseases and demonstrates a scalable full-stack ML deployment.
+## 🚀 Live Demo
+
+🔗 https://plant-disease-frontend-li4y.onrender.com/
+
+---
+
+## 📌 Overview
+
+AgriSparks leverages a TensorFlow Lite INT8-quantized model to identify plant diseases from leaf images. The system combines machine learning inference with a modern web interface, making plant disease diagnosis accessible and efficient.
+
+### Key Features
+
+* 🌿 Upload plant leaf images for analysis
+* 🤖 AI-powered disease prediction using TensorFlow Lite
+* ⚡ Fast inference with INT8 quantized model
+* 📊 Prediction history tracking
+* 📱 Responsive and modern UI
+* 🔄 Full-stack MERN-based architecture
+* ☁️ Cloud deployment on Render
 
 ---
 
 ## 📂 Project Structure
 
-```
-AgriSparks_mini/
-├── frontend/                    # React frontend (Port 5173)
+```text
+AgriSparks/
+├── frontend/
 │   ├── src/
 │   │   ├── App.jsx
 │   │   ├── main.jsx
@@ -21,17 +39,17 @@ AgriSparks_mini/
 │   ├── vite.config.js
 │   └── package.json
 │
-├── backend/                     # Node.js backend (Port 5000)
-│   ├── server.js                # Express server
-│   ├── inference.py             # Python TFLite inference script
+├── backend/
+│   ├── server.js
+│   ├── inference.py
 │   ├── routes/
-│   │   ├── predict.js           
-│   │   └── history.js           
+│   │   ├── predict.js
+│   │   └── history.js
 │   ├── models/
 │   │   ├── plant_disease_model_int8.tflite
-|   |   ├── predictions.js
-|   |   └── AgriSparks.ipynb
-│   ├── uploads/                 # Temporary image storage
+│   │   ├── predictions.js
+│   │   └── AgriSparks.ipynb
+│   ├── uploads/
 │   ├── middleware/
 │   └── package.json
 │
@@ -43,35 +61,51 @@ AgriSparks_mini/
 
 ---
 
-## 📘 Model Training Notebook
-
-👉 **Open the training notebook in Google Colab:**
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1oG0Q__VzHYfgV_vZyVf4XbhFmlhYO5Bf)
-
----
 ## 🛠️ Tech Stack
 
 ### Frontend
 
-* **React 19.2.0**
-* **Tailwind CSS**
-* **Vite**
+* React 19
+* Vite
+* Tailwind CSS
 
 ### Backend
 
-* **Node.js**
-* **Express.js**
+* Node.js
+* Express.js
+* REST API
 
-### Machine Learning / Inference
+### Machine Learning
 
-* **Python 3.11**
-* **TensorFlow Lite (INT8 Quantized Model)**
-* **NumPy**
-  
+* Python 3.11
+* TensorFlow Lite
+* NumPy
+* INT8 Quantized Model
+
+### Deployment
+
+* Render (Frontend & Backend)
+
 ---
 
-## ⚙️ Setup Instructions
+## 📘 Model Training Notebook
+
+Open the training notebook in Google Colab:
+
+https://colab.research.google.com/drive/1oG0Q__VzHYfgV_vZyVf4XbhFmlhYO5Bf
+
+---
+
+## ⚙️ Local Setup
+
+### Clone Repository
+
+```bash
+git clone https://github.com/AtharvaSonar-21/Agrisparks.git
+cd Agrisparks
+```
+
+---
 
 ### Backend Setup
 
@@ -80,12 +114,17 @@ cd backend
 npm install
 ```
 
-Run the backend server:
+Start the backend server:
 
 ```bash
 npm run dev
 ```
 
+Backend runs on:
+
+```text
+http://localhost:5000
+```
 
 ---
 
@@ -97,5 +136,60 @@ npm install
 npm run dev
 ```
 
+Frontend runs on:
+
+```text
+http://localhost:5173
+```
 
 ---
+
+## 📡 API Endpoints
+
+### Predict Disease
+
+```http
+POST /api/predict
+```
+
+Uploads an image and returns the predicted plant disease.
+
+### Prediction History
+
+```http
+GET /api/history
+```
+
+Retrieves previously generated predictions.
+
+---
+
+## 🎯 Project Objectives
+
+* Demonstrate practical integration of Machine Learning with Full-Stack Development
+* Deploy TensorFlow Lite models in production-ready environments
+* Provide an accessible tool for plant disease diagnosis
+* Showcase scalable AI-powered web application architecture
+
+---
+
+## 📈 Future Enhancements
+
+* Multi-language support
+* Mobile application integration
+* Disease treatment recommendations
+* User authentication and dashboards
+* Expanded plant disease dataset
+* Confidence score visualization
+
+---
+
+## 👨‍💻 Author
+
+**Atharva Sonar**
+
+---
+
+## 📄 License
+
+This project is developed for educational and research purposes.
