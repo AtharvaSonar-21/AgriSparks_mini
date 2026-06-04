@@ -19,7 +19,7 @@ services:
         sync: false # User will supply Frontend URL (e.g. https://plant-disease-frontend.onrender.com)
 
   # Frontend Static Site
-  - type: web
+  - type: static
     name: plant-disease-frontend
     env: static
     plan: free
