@@ -11,6 +11,6 @@ projects:
       repo: https://github.com/AtharvaSonar-21/AgriSparks_mini
       plan: free
       region: singapore
-      buildCommand: pip install -r requirements.txt
-      startCommand: gunicorn your_application.wsgi
+      buildCommand: npm install
+      startCommand: npm start
       autoDeployTrigger: commit
